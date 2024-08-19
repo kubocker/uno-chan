@@ -1,11 +1,50 @@
-import { defineConfig, presetUno } from 'unocss';
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetUno,
+  transformerDirectives
+} from 'unocss'
+import extractorSvelte from '@unocss/extractor-svelte'
+import { FileSystemIconLoader } from '@iconify/utils/lib/loader/node-loaders'
 
 export default defineConfig({
-  presets: [presetUno()],
+  extractors: [
+    extractorSvelte(),
+  ],
+  shortcuts: [
+    { logo: 'i-logos:svelte-icon w-6em h-6em transform transition-800 hover:rotate-180' },
+  ],
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons({
+      collections: {
+        custom: {
+          // do not remove LF: testing trimCustomSvg on universal icon loader
+          circle: `<svg viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg">
+<circle cx="60" cy="60" r="50"/>
+</svg>
+`,
+        },
+        customfsl: FileSystemIconLoader(
+          './icons',
+          svg => svg.replace('<svg ', '<svg fill="currentColor" '),
+        ),
+      },
+      extraProperties: {
+        'display': 'inline-block',
+        'vertical-align': 'middle',
+      },
+    }),
+  ],
+  transformers: [
+    transformerDirectives(),
+  ],
   rules: [
     // 流動的に反復回数と持続時間を指定できるアニメーションルール
     [
-      /^animate-(\w+)-(\d+)-(\d+ms)$/,
+      /^animate-(\w+)-(infinite|\d+)-(\d+ms)$/,
       ([, anim, count, duration]) => ({
         animation: `${anim} ${duration} ease-in-out ${count}`,
       }),
@@ -70,5 +109,5 @@ export default defineConfig({
       `,
     },
   ],
-});
+})
 

@@ -1,6 +1,6 @@
 {
   "name": "uno-chan",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A collection of UnoCSS animation presets",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
