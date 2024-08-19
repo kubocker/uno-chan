@@ -1,0 +1,26 @@
+{
+  "name": "uno-chan",
+  "version": "1.0.0",
+  "description": "A collection of UnoCSS animation presets",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "unocss",
+    "animations",
+    "css",
+    "preset"
+  ],
+  "author": "Your Name",
+  "license": "MIT",
+  "dependencies": {
+    "@unocss/extractor-svelte": "^0.62.2",
+    "unocss": "^0.62.2"
+  },
+  "devDependencies": {
+    "@types/node": "^22.4.0",
+    "typescript": "^5.5.4"
+  }
+}
